@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="cost_effective" type="id"/>
+   <item name="bit_pricier" type="id"/>
+    <item name="big_spender" type="id"/>
+</resources>
