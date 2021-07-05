@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
     private void findRestaurants() {
 
 
-        ///
+
         List<RestaurantsAttributes> restaurantsCostEffective = new ArrayList<>();
         List<RestaurantsAttributes> restaurantsBitPriceir = new ArrayList<>();
         List<RestaurantsAttributes> restaurantsBigSpender = new ArrayList<>();
