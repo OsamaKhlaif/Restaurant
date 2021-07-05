@@ -4,12 +4,12 @@ import java.util.List;
 
 public class items {
 
-private String textTitle;
-private List<RestaurantsAttributes> typeOfRestaurants;
+    private String textTitle;
+    private List<RestaurantsAttributes> typeOfRestaurants;
 
-    public items(String textTitle ,List<RestaurantsAttributes> typeOfRestaurants) {
-        this.textTitle=textTitle;
-        this.typeOfRestaurants=typeOfRestaurants;
+    public items(String textTitle, List<RestaurantsAttributes> typeOfRestaurants) {
+        this.textTitle = textTitle;
+        this.typeOfRestaurants = typeOfRestaurants;
     }
 
     public String getTextTitle() {
