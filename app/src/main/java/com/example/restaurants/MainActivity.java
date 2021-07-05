@@ -26,10 +26,10 @@ public class MainActivity extends AppCompatActivity {
     private APIInterface apiInterface;
     private RestaurantsAttributes restaurantsAttributes;
     private final String TAG = MainActivity.class.getSimpleName();
-    List<RestaurantsAttributes> restaurantsCostEffective;
-    List<RestaurantsAttributes> restaurantsBitPricier;
-    List<RestaurantsAttributes> restaurantsBigSpender;
-    List<items> itemsList;
+    private List<RestaurantsAttributes> restaurantsCostEffective;
+    private List<RestaurantsAttributes> restaurantsBitPricier;
+    private List<RestaurantsAttributes> restaurantsBigSpender;
+    private List<items> itemsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
