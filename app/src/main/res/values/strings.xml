@@ -2,6 +2,7 @@
     <string name="app_name">Restaurants</string>
     <string name="search">Search</string>
     <string name="cost_effective">Cost Effective</string>
-    <string name="bit_priceir">Bit Priceir</string>
+    <string name="bit_pricier">Bit Pricier</string>
     <string name="big_spender">Big Spender</string>
+    <string name="search_city">Search City</string>
 </resources>

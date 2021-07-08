@@ -1,5 +1,5 @@
 
-package com.example.restaurants;
+package com.example.restaurants.APIBusinessSearch;
 
 import javax.annotation.Generated;
 import com.google.gson.annotations.SerializedName;

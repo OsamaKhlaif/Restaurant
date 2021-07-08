@@ -1,12 +1,12 @@
 
-package com.example.restaurants;
+package com.example.restaurants.APIBusinessSearch;
 
 import javax.annotation.Generated;
 import com.google.gson.annotations.SerializedName;
 
 @Generated("net.hexar.json2pojo")
 @SuppressWarnings("unused")
-public class Center {
+public class Coordinates {
 
     @SerializedName("latitude")
     private Double mLatitude;

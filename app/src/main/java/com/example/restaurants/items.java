@@ -5,9 +5,9 @@ import java.util.List;
 public class items {
 
     private String textTitle;
-    private List<RestaurantsAttributes> typeOfRestaurants;
+    private List<RestaurantsSearchAttributes> typeOfRestaurants;
 
-    public items(String textTitle, List<RestaurantsAttributes> typeOfRestaurants) {
+    public items(String textTitle, List<RestaurantsSearchAttributes> typeOfRestaurants) {
         this.textTitle = textTitle;
         this.typeOfRestaurants = typeOfRestaurants;
     }
@@ -20,11 +20,11 @@ public class items {
         this.textTitle = textTitle;
     }
 
-    public List<RestaurantsAttributes> getTypeOfRestaurants() {
+    public List<RestaurantsSearchAttributes> getTypeOfRestaurants() {
         return typeOfRestaurants;
     }
 
-    public void setTypeOfRestaurants(List<RestaurantsAttributes> typeOfRestaurants) {
+    public void setTypeOfRestaurants(List<RestaurantsSearchAttributes> typeOfRestaurants) {
         this.typeOfRestaurants = typeOfRestaurants;
     }
 }

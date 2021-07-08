@@ -1,5 +1,5 @@
 
-package com.example.restaurants;
+package com.example.restaurants.APIBusinessSearch;
 
 import java.util.List;
 import javax.annotation.Generated;

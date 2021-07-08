@@ -1,8 +1,9 @@
 
-package com.example.restaurants;
+package com.example.restaurants.APIBusinessSearch;
 
 import java.util.List;
 import javax.annotation.Generated;
+
 import com.google.gson.annotations.SerializedName;
 
 @Generated("net.hexar.json2pojo")

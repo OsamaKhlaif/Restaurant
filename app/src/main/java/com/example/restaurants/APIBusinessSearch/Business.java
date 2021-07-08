@@ -1,8 +1,9 @@
 
-package com.example.restaurants;
+package com.example.restaurants.APIBusinessSearch;
 
 import java.util.List;
 import javax.annotation.Generated;
+
 import com.google.gson.annotations.SerializedName;
 
 @Generated("net.hexar.json2pojo")
@@ -38,7 +39,7 @@ public class Business {
     @SerializedName("review_count")
     private Long mReviewCount;
     @SerializedName("transactions")
-    private List<Object> mTransactions;
+    private List<String> mTransactions;
     @SerializedName("url")
     private String mUrl;
 
@@ -154,11 +155,11 @@ public class Business {
         mReviewCount = reviewCount;
     }
 
-    public List<Object> getTransactions() {
+    public List<String> getTransactions() {
         return mTransactions;
     }
 
-    public void setTransactions(List<Object> transactions) {
+    public void setTransactions(List<String> transactions) {
         mTransactions = transactions;
     }
 
