@@ -2,12 +2,12 @@ package com.example.restaurants;
 
 import java.util.List;
 
-public class items {
+public class Items {
 
     private String textTitle;
     private List<RestaurantsSearchAttributes> typeOfRestaurants;
 
-    public items(String textTitle, List<RestaurantsSearchAttributes> typeOfRestaurants) {
+    public Items(String textTitle, List<RestaurantsSearchAttributes> typeOfRestaurants) {
         this.textTitle = textTitle;
         this.typeOfRestaurants = typeOfRestaurants;
     }

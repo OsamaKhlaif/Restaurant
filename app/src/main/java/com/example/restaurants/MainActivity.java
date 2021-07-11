@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private List<RestaurantsSearchAttributes> restaurantsBigSpender;
     private RecyclerAdapter.RecyclerViewClickListener listener;
     private RecyclerAdapter recyclerAdapter;
-    private items item;
+    private Items item;
     private LinearLayout linearLayoutHomeScreen;
     private CustomRecyclerView customComponentsOfRecyclerView;
 
@@ -149,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void addCustomComponents(String title, List<RestaurantsSearchAttributes> restaurantsAttributes) {
-        item = new items(title, restaurantsAttributes);
+        item = new Items(title, restaurantsAttributes);
         setOnClickListener(item);
         recyclerAdapter = new RecyclerAdapter(MainActivity.this, item.getTypeOfRestaurants(), listener);
         customComponentsOfRecyclerView = new CustomRecyclerView(MainActivity.this);
@@ -158,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
         linearLayoutHomeScreen.addView(customComponentsOfRecyclerView);
     }
 
-    private void setOnClickListener(items item) {
+    private void setOnClickListener(Items item) {
         listener = (v, position) -> {
 
             Intent intent = new Intent(getApplicationContext(), DetailsOfRestaurants.class);
