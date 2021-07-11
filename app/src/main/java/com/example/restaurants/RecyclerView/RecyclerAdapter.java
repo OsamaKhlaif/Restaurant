@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.restaurants.R;
 import com.example.restaurants.RestaurantsSearchAttributes;
 import com.squareup.picasso.Picasso;
@@ -23,14 +22,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerViewHeaven> {
         this.context = context;
         this.restaurants = restaurants;
         this.listener = listener;
-
     }
 
     @NonNull
     @Override
     public RecyclerViewHeaven onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.custom_view, parent, false);
-
         return new RecyclerViewHeaven(view, listener);
     }
 

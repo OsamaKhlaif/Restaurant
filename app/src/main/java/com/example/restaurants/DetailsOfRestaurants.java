@@ -2,18 +2,22 @@ package com.example.restaurants;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
 import com.example.restaurants.API.APIClient;
 import com.example.restaurants.API.APIInterface;
 import com.example.restaurants.APIBusinessId.RestaurantId;
 import com.example.restaurants.ViewPager.ViewPagerAdapter;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -106,7 +110,7 @@ public class DetailsOfRestaurants extends AppCompatActivity {
             if (position != data.size() - 1) {
                 dataArray.append(data.get(position));
                 // to do the address above each other
-                dataArray.append(",\n" + "                ");
+                dataArray.append(",\n" + "                 ");
             } else {
                 dataArray.append(data.get(position));
             }

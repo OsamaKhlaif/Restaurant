@@ -3,6 +3,14 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        release {
+            storeFile file('C:\\Users\\OsamaKh\\AndroidStudioProjects\\Restaurants\\restaurants.jks')
+            storePassword '0595799933Osama!'
+            keyAlias 'restaurants'
+            keyPassword '0595799933Osama!'
+        }
+    }
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
@@ -14,6 +22,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.release
     }
 
     buildTypes {

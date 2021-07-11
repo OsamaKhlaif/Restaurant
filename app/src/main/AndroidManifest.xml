@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.restaurants">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -11,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Restaurants">
-        <activity android:name=".DetailsOfRestaurants"/>
+        <activity android:name=".DetailsOfRestaurants" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,6 +20,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Branch init -->
+        <meta-data
+            android:name="io.branch.sdk.BranchKey"
+            android:value="key_live_if9yjvjwgXRHonFPI1Q0peogBzkfpel7" />
+        <!-- Branch testing (TestMode "true" to simulate fresh installs on dev environment) -->
+        <meta-data
+            android:name="io.branch.sdk.TestMode"
+            android:value="false" />
     </application>
 
 </manifest>
