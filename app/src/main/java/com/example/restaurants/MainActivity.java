@@ -3,6 +3,7 @@ package com.example.restaurants;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityOptionsCompat;
+
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -13,12 +14,15 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
 import com.example.restaurants.API.APIClient;
 import com.example.restaurants.API.APIInterface;
 import com.example.restaurants.APIBusinessSearch.Restaurant;
 import com.example.restaurants.RecyclerView.RecyclerAdapter;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -28,32 +32,32 @@ import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ImageButton search;
-    private EditText placeEditTextSearch;
-    private String place;
+    private ImageButton searchButton;
+    private EditText placeSearchEditText;
+    private String placeName;
     private APIInterface apiInterface;
     private RestaurantsSearchAttributes restaurantsAttributes;
-    private final String TAG = MainActivity.class.getSimpleName();
+    private static final String TAG = MainActivity.class.getSimpleName();
     private List<RestaurantsSearchAttributes> restaurantsCostEffective;
     private List<RestaurantsSearchAttributes> restaurantsBitPricier;
     private List<RestaurantsSearchAttributes> restaurantsBigSpender;
     private RecyclerAdapter.RecyclerViewClickListener listener;
     private RecyclerAdapter recyclerAdapter;
     private Items item;
-    private LinearLayout linearLayoutHomeScreen;
-    private CustomRecyclerView customComponentsOfRecyclerView;
+    private LinearLayout homeScreenLinearLayout;
+    private CustomRecyclerView customRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        linearLayoutHomeScreen = findViewById(R.id.linear_layout_home_screen);
-        search = findViewById(R.id.image_search);
-        placeEditTextSearch = findViewById(R.id.place_edit_text_search);
-        search.setOnClickListener(v -> {
-            place = placeEditTextSearch.getText().toString();
-            linearLayoutHomeScreen.removeAllViews();
+        homeScreenLinearLayout = findViewById(R.id.home_screen_linear_layout);
+        searchButton = findViewById(R.id.search_image_button);
+        placeSearchEditText = findViewById(R.id.place_search_edit_text);
+        searchButton.setOnClickListener(v -> {
+            placeName = placeSearchEditText.getText().toString();
+            homeScreenLinearLayout.removeAllViews();
             findRestaurants();
 
         });
@@ -66,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         restaurantsBigSpender = new ArrayList<>();
         apiInterface = APIClient.getClient().create(APIInterface.class);
 
-        Observable<Restaurant> apiCall = apiInterface.getRestaurants(place)
+        Observable<Restaurant> apiCall = apiInterface.getRestaurants(placeName)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
         apiCall.subscribe(new Observer<Restaurant>() {
@@ -79,21 +83,21 @@ public class MainActivity extends AppCompatActivity {
             public void onNext(@NonNull Restaurant restaurant) {
 
                 int position = 0;
-                int numberOfPrice;
+                int priceUnitCharNumber;
 
                 while (position < restaurant.getBusinesses().size()) {
                     if (restaurant.getBusinesses().get(position).getPrice() != null) {
-                        numberOfPrice = restaurant.getBusinesses().get(position).getPrice().length();
+                        priceUnitCharNumber = restaurant.getBusinesses().get(position).getPrice().length();
                     } else {
-                        numberOfPrice = 1;
+                        priceUnitCharNumber = 1;
                     }
 
-                    if (numberOfPrice == 1) {
-                        restaurantsCostEffective.add(restaurantsAttributes(restaurant, position));
-                    } else if (numberOfPrice == 2) {
-                        restaurantsBitPricier.add(restaurantsAttributes(restaurant, position));
-                    } else if (numberOfPrice == 3) {
-                        restaurantsBigSpender.add(restaurantsAttributes(restaurant, position));
+                    if (priceUnitCharNumber == 1) {
+                        restaurantsCostEffective.add(setRestaurantsAttributes(restaurant, position));
+                    } else if (priceUnitCharNumber == 2) {
+                        restaurantsBitPricier.add(setRestaurantsAttributes(restaurant, position));
+                    } else if (priceUnitCharNumber == 3) {
+                        restaurantsBigSpender.add(setRestaurantsAttributes(restaurant, position));
                     }
                     position++;
                 }
@@ -103,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
                     addCustomComponents("Bit Pricier", restaurantsBitPricier);
                     addCustomComponents("Bit Pricier", restaurantsBigSpender);
                 } else {
-                    Toast.makeText(MainActivity.this, "This " + place + " not have any registrar restaurant", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "This " + placeName + " not have any registrar restaurant", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -136,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public RestaurantsSearchAttributes restaurantsAttributes(Restaurant restaurant, int position) {
+    public RestaurantsSearchAttributes setRestaurantsAttributes(Restaurant restaurant, int position) {
 
         restaurantsAttributes = new RestaurantsSearchAttributes(restaurant.getBusinesses().get(position).getName(),
                 restaurant.getBusinesses().get(position).getReviewCount(), restaurant.getBusinesses().get(position).getRating(),
@@ -151,30 +155,30 @@ public class MainActivity extends AppCompatActivity {
     public void addCustomComponents(String title, List<RestaurantsSearchAttributes> restaurantsAttributes) {
         item = new Items(title, restaurantsAttributes);
         setOnClickListener(item);
-        recyclerAdapter = new RecyclerAdapter(MainActivity.this, item.getTypeOfRestaurants(), listener);
-        customComponentsOfRecyclerView = new CustomRecyclerView(MainActivity.this);
-        customComponentsOfRecyclerView.title.setText(item.getTextTitle());
-        customComponentsOfRecyclerView.recyclerView.setAdapter(recyclerAdapter);
-        linearLayoutHomeScreen.addView(customComponentsOfRecyclerView);
+        recyclerAdapter = new RecyclerAdapter(MainActivity.this, item.getRestaurantsTypeAttributes(), listener);
+        customRecyclerView = new CustomRecyclerView(MainActivity.this);
+        customRecyclerView.titleTextView.setText(item.getTitleText());
+        customRecyclerView.recyclerView.setAdapter(recyclerAdapter);
+        homeScreenLinearLayout.addView(customRecyclerView);
     }
 
     private void setOnClickListener(Items item) {
         listener = (v, position) -> {
 
-            Intent intent = new Intent(getApplicationContext(), DetailsOfRestaurants.class);
+            Intent intent = new Intent(getApplicationContext(), RestaurantsDetailsActivity.class);
             RestaurantsSearchAttributes restaurantsAttributes = new RestaurantsSearchAttributes(
-                    item.getTypeOfRestaurants().get(position).getName(),
-                    item.getTypeOfRestaurants().get(position).getReview(),
-                    item.getTypeOfRestaurants().get(position).getRating(),
-                    item.getTypeOfRestaurants().get(position).getImage(),
-                    item.getTypeOfRestaurants().get(position).getDisplayPhone(),
-                    item.getTypeOfRestaurants().get(position).getZipCode(),
-                    item.getTypeOfRestaurants().get(position).getAddress(),
-                    item.getTypeOfRestaurants().get(position).getPhone(),
-                    item.getTypeOfRestaurants().get(position).getId());
+                    item.getRestaurantsTypeAttributes().get(position).getPlaceName(),
+                    item.getRestaurantsTypeAttributes().get(position).getRestaurantsReview(),
+                    item.getRestaurantsTypeAttributes().get(position).getRestaurantsRating(),
+                    item.getRestaurantsTypeAttributes().get(position).getRestaurantsImage(),
+                    item.getRestaurantsTypeAttributes().get(position).getRestaurantsDisplayPhone(),
+                    item.getRestaurantsTypeAttributes().get(position).getRestaurantsZipCode(),
+                    item.getRestaurantsTypeAttributes().get(position).getRestaurantsAddress(),
+                    item.getRestaurantsTypeAttributes().get(position).getRestaurantsPhoneCall(),
+                    item.getRestaurantsTypeAttributes().get(position).getRestaurantsId());
             intent.putExtra("details", restaurantsAttributes);
             ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(MainActivity.this,
-                    customComponentsOfRecyclerView.recyclerView, "recycler_view");
+                    customRecyclerView.recyclerView, "recycler_view");
             startActivity(intent, optionsCompat.toBundle());
 
         };

@@ -4,27 +4,27 @@ import java.util.List;
 
 public class Items {
 
-    private String textTitle;
-    private List<RestaurantsSearchAttributes> typeOfRestaurants;
+    private String titleText;
+    private List<RestaurantsSearchAttributes> restaurantsTypeAttributes;
 
-    public Items(String textTitle, List<RestaurantsSearchAttributes> typeOfRestaurants) {
-        this.textTitle = textTitle;
-        this.typeOfRestaurants = typeOfRestaurants;
+    public Items(String titleText, List<RestaurantsSearchAttributes> restaurantsTypeAttributes) {
+        this.titleText = titleText;
+        this.restaurantsTypeAttributes = restaurantsTypeAttributes;
     }
 
-    public String getTextTitle() {
-        return textTitle;
+    public String getTitleText() {
+        return titleText;
     }
 
-    public void setTextTitle(String textTitle) {
-        this.textTitle = textTitle;
+    public void setTitleText(String titleText) {
+        this.titleText = titleText;
     }
 
-    public List<RestaurantsSearchAttributes> getTypeOfRestaurants() {
-        return typeOfRestaurants;
+    public List<RestaurantsSearchAttributes> getRestaurantsTypeAttributes() {
+        return restaurantsTypeAttributes;
     }
 
-    public void setTypeOfRestaurants(List<RestaurantsSearchAttributes> typeOfRestaurants) {
-        this.typeOfRestaurants = typeOfRestaurants;
+    public void setRestaurantsTypeAttributes(List<RestaurantsSearchAttributes> restaurantsTypeAttributes) {
+        this.restaurantsTypeAttributes = restaurantsTypeAttributes;
     }
 }

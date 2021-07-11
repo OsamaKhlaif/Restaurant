@@ -5,20 +5,23 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.restaurants.R;
 import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerViewHeaven> {
 
     private Context context;
-    List <String> imageOfRestaurants;
+    private List<String> restaurantsImage;
 
-    public ViewPagerAdapter(Context context, List <String> imageOfRestaurants) {
-    this.context=context;
-    this.imageOfRestaurants=imageOfRestaurants;
+    public ViewPagerAdapter(Context context, List<String> restaurantsImage) {
+        this.context = context;
+        this.restaurantsImage = restaurantsImage;
     }
 
     @NonNull
@@ -29,12 +32,12 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerViewHeaven> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull  ViewPagerViewHeaven holder, int position) {
-        Picasso.with(context).load(Uri.parse(imageOfRestaurants.get(position))).into( holder.imageView);
+    public void onBindViewHolder(@NonNull ViewPagerViewHeaven holder, int position) {
+        Picasso.with(context).load(Uri.parse(restaurantsImage.get(position))).into(holder.roundedImageView);
     }
 
     @Override
     public int getItemCount() {
-        return imageOfRestaurants.size();
+        return restaurantsImage.size();
     }
 }

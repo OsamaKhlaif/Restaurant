@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class CustomRecyclerView extends LinearLayout {
 
-    TextView title;
+    TextView titleTextView;
     RecyclerView recyclerView;
 
     public CustomRecyclerView(Context context) {
@@ -25,7 +25,7 @@ public class CustomRecyclerView extends LinearLayout {
 
     public void init(Context context, AttributeSet attrs) {
         inflate(context, R.layout.custom_recycler_view, this);
-        title = findViewById(R.id.title_text_view);
+        titleTextView = findViewById(R.id.title_text_view);
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext().getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
     }

@@ -2,55 +2,56 @@ package com.example.restaurants;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+
 import java.util.List;
 
 public class RestaurantsSearchAttributes implements Parcelable {
 
-    private String name;
-    private long review;
-    private double rating;
-    private String image;
-    private String displayPhone;
-    private String zipCode;
-    private List<String> address;
-    private String id;
-    private String phone;
+    private String placeName;
+    private long restaurantsReview;
+    private double restaurantsRating;
+    private String restaurantsImage;
+    private String restaurantsDisplayPhone;
+    private String restaurantsZipCode;
+    private List<String> restaurantsAddress;
+    private String restaurantsId;
+    private String restaurantsPhoneCall;
 
-    public RestaurantsSearchAttributes(String name, long review, double rating, String image, String displayPhone, String zipCode, List<String> address, String phone, String id) {
-        this.name = name;
-        this.review = review;
-        this.rating = rating;
-        this.image = image;
-        this.displayPhone = displayPhone;
-        this.zipCode = zipCode;
-        this.address = address;
-        this.phone = phone;
-        this.id = id;
+    public RestaurantsSearchAttributes(String placeName, long restaurantsReview, double restaurantsRating, String restaurantsImage, String restaurantsDisplayPhone, String restaurantsZipCode, List<String> restaurantsAddress, String restaurantsPhoneCall, String restaurantsId) {
+        this.placeName = placeName;
+        this.restaurantsReview = restaurantsReview;
+        this.restaurantsRating = restaurantsRating;
+        this.restaurantsImage = restaurantsImage;
+        this.restaurantsDisplayPhone = restaurantsDisplayPhone;
+        this.restaurantsZipCode = restaurantsZipCode;
+        this.restaurantsAddress = restaurantsAddress;
+        this.restaurantsPhoneCall = restaurantsPhoneCall;
+        this.restaurantsId = restaurantsId;
     }
 
     protected RestaurantsSearchAttributes(Parcel in) {
-        name = in.readString();
-        review = in.readLong();
-        rating = in.readDouble();
-        image = in.readString();
-        displayPhone = in.readString();
-        zipCode = in.readString();
-        phone = in.readString();
-        address = in.createStringArrayList();
-        id = in.readString();
+        placeName = in.readString();
+        restaurantsReview = in.readLong();
+        restaurantsRating = in.readDouble();
+        restaurantsImage = in.readString();
+        restaurantsDisplayPhone = in.readString();
+        restaurantsZipCode = in.readString();
+        restaurantsPhoneCall = in.readString();
+        restaurantsAddress = in.createStringArrayList();
+        restaurantsId = in.readString();
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(name);
-        dest.writeLong(review);
-        dest.writeDouble(rating);
-        dest.writeString(image);
-        dest.writeString(displayPhone);
-        dest.writeString(zipCode);
-        dest.writeString(phone);
-        dest.writeStringList(address);
-        dest.writeString(id);
+        dest.writeString(placeName);
+        dest.writeLong(restaurantsReview);
+        dest.writeDouble(restaurantsRating);
+        dest.writeString(restaurantsImage);
+        dest.writeString(restaurantsDisplayPhone);
+        dest.writeString(restaurantsZipCode);
+        dest.writeString(restaurantsPhoneCall);
+        dest.writeStringList(restaurantsAddress);
+        dest.writeString(restaurantsId);
     }
 
     @Override
@@ -70,76 +71,76 @@ public class RestaurantsSearchAttributes implements Parcelable {
         }
     };
 
-    public String getId() {
-        return id;
+    public String getRestaurantsId() {
+        return restaurantsId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setRestaurantsId(String restaurantsId) {
+        this.restaurantsId = restaurantsId;
     }
 
-    public String getDisplayPhone() {
-        return displayPhone;
+    public String getRestaurantsDisplayPhone() {
+        return restaurantsDisplayPhone;
     }
 
-    public void setDisplayPhone(String displayPhone) {
-        this.displayPhone = displayPhone;
+    public void setRestaurantsDisplayPhone(String restaurantsDisplayPhone) {
+        this.restaurantsDisplayPhone = restaurantsDisplayPhone;
     }
 
-    public String getZipCode() {
-        return zipCode;
+    public String getRestaurantsZipCode() {
+        return restaurantsZipCode;
     }
 
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
+    public void setRestaurantsZipCode(String restaurantsZipCode) {
+        this.restaurantsZipCode = restaurantsZipCode;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getRestaurantsPhoneCall() {
+        return restaurantsPhoneCall;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setRestaurantsPhoneCall(String restaurantsPhoneCall) {
+        this.restaurantsPhoneCall = restaurantsPhoneCall;
     }
 
-    public List<String> getAddress() {
-        return address;
+    public List<String> getRestaurantsAddress() {
+        return restaurantsAddress;
     }
 
-    public void setAddress(List<String> address) {
-        this.address = address;
+    public void setRestaurantsAddress(List<String> restaurantsAddress) {
+        this.restaurantsAddress = restaurantsAddress;
     }
 
-    public String getName() {
-        return name;
+    public String getPlaceName() {
+        return placeName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPlaceName(String placeName) {
+        this.placeName = placeName;
     }
 
-    public long getReview() {
-        return review;
+    public long getRestaurantsReview() {
+        return restaurantsReview;
     }
 
-    public void setReview(long review) {
-        this.review = review;
+    public void setRestaurantsReview(long restaurantsReview) {
+        this.restaurantsReview = restaurantsReview;
     }
 
-    public double getRating() {
-        return rating;
+    public double getRestaurantsRating() {
+        return restaurantsRating;
     }
 
-    public void setRating(double rating) {
-        this.rating = rating;
+    public void setRestaurantsRating(double restaurantsRating) {
+        this.restaurantsRating = restaurantsRating;
     }
 
-    public String getImage() {
-        return image;
+    public String getRestaurantsImage() {
+        return restaurantsImage;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setRestaurantsImage(String restaurantsImage) {
+        this.restaurantsImage = restaurantsImage;
     }
 
 }

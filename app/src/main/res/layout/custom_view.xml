@@ -7,7 +7,7 @@
     android:paddingHorizontal="10dp">
 
     <ImageView
-        android:id="@+id/image_of_restaurant"
+        android:id="@+id/restaurants_image_view"
         android:layout_width="210dp"
         android:layout_height="110dp"
         android:layout_marginTop="5dp"
@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/description_of_restaurant"
+        android:id="@+id/restaurants_description_text_view"
         android:layout_width="210dp"
         android:layout_height="60dp"
         android:layout_marginBottom="5dp"
@@ -26,6 +26,6 @@
         android:textColor="@color/black"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/image_of_restaurant" />
+        app:layout_constraintTop_toBottomOf="@id/restaurants_image_view" />
 
 </LinearLayout>

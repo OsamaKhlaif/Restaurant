@@ -25,38 +25,37 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-public class DetailsOfRestaurants extends AppCompatActivity {
+public class RestaurantsDetailsActivity extends AppCompatActivity {
 
-
-    private TextView nameOfRestaurants;
+    private TextView restaurantsName;
     private RestaurantsSearchAttributes restaurantsAttributes;
-    private TextView phoneOfRestaurants;
-    private TextView addressOfRestaurants;
-    private ImageButton callRestaurants;
+    private TextView restaurantsPhone;
+    private TextView restaurantsAddress;
+    private ImageButton restaurantsCallButton;
     private APIInterface apiInterface;
-    private final String TAG = DetailsOfRestaurants.class.getSimpleName();
-    private List<String> imageOfRestaurant;
-    private ViewPager2 viewPager;
+    private static final String TAG = RestaurantsDetailsActivity.class.getSimpleName();
+    private List<String> restaurantImage;
+    private ViewPager2 imageViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details_of_resturants);
 
-        imageOfRestaurant = new ArrayList<>();
-        nameOfRestaurants = findViewById(R.id.text_name_of_restaurants);
-        phoneOfRestaurants = findViewById(R.id.text_phone_of_restaurants);
-        addressOfRestaurants = findViewById(R.id.text_address_of_restaurants);
-        callRestaurants = findViewById(R.id.call_restaurants);
-        viewPager = findViewById(R.id.view_pager_of_image_of_details_of_restaurant);
+        restaurantImage = new ArrayList<>();
+        restaurantsName = findViewById(R.id.restaurants_name_text_view);
+        restaurantsPhone = findViewById(R.id.restaurants_phone_text_view);
+        restaurantsAddress = findViewById(R.id.restaurants_address_text_view);
+        restaurantsCallButton = findViewById(R.id.restaurants_call_button);
+        imageViewPager = findViewById(R.id.restaurants_images_view_pager);
 
         Intent intent = getIntent();
         restaurantsAttributes = intent.getParcelableExtra("details");
         findInformationOfRestaurants();
         // when the user click in call button to call the restaurants
-        callRestaurants.setOnClickListener(v -> {
+        restaurantsCallButton.setOnClickListener(v -> {
             Intent intentCall = new Intent(Intent.ACTION_DIAL);
-            intentCall.setData(Uri.parse("tel:" + restaurantsAttributes.getPhone()));
+            intentCall.setData(Uri.parse("tel:" + restaurantsAttributes.getRestaurantsPhoneCall()));
             startActivity(intentCall);
         });
     }
@@ -64,7 +63,7 @@ public class DetailsOfRestaurants extends AppCompatActivity {
     private void findInformationOfRestaurants() {
 
         apiInterface = APIClient.getClient().create(APIInterface.class);
-        Observable<RestaurantId> apiCallId = apiInterface.getRestaurantsId(restaurantsAttributes.getId())
+        Observable<RestaurantId> apiCallId = apiInterface.getRestaurantsId(restaurantsAttributes.getRestaurantsId())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
 
@@ -77,19 +76,19 @@ public class DetailsOfRestaurants extends AppCompatActivity {
             @Override
             public void onNext(@NonNull RestaurantId restaurantId) {
                 for (int position = 0; position < restaurantId.getPhotos().size(); position++) {
-                    imageOfRestaurant.add(restaurantId.getPhotos().get(position));
+                    restaurantImage.add(restaurantId.getPhotos().get(position));
                 }
-                nameOfRestaurants.setText("\nName: " + restaurantsAttributes.getName()
-                        + "\n\nRating: " + restaurantsAttributes.getRating()
-                        + " Stars\n\nReview: " + restaurantsAttributes.getReview());
-                phoneOfRestaurants.setText("\nPhone: " + restaurantsAttributes.getDisplayPhone());
-                addressOfRestaurants.setText("\nZip Code: " + restaurantsAttributes.getZipCode()
-                        + "\n\nAddress: " + displayArray(restaurantsAttributes.getAddress())
+                restaurantsName.setText("\nName: " + restaurantsAttributes.getPlaceName()
+                        + "\n\nRating: " + restaurantsAttributes.getRestaurantsRating()
+                        + " Stars\n\nReview: " + restaurantsAttributes.getRestaurantsReview());
+                restaurantsPhone.setText("\nPhone: " + restaurantsAttributes.getRestaurantsDisplayPhone());
+                restaurantsAddress.setText("\nZip Code: " + restaurantsAttributes.getRestaurantsZipCode()
+                        + "\n\nAddress: " + displayArray(restaurantsAttributes.getRestaurantsAddress())
                         + "\n\nStatus: " + ((restaurantId.getHours() == null) ? "--------" :
                         (restaurantId.getHours().get(0).getIsOpenNow().equals(true) ? "Open Now" : "Close Now")) + "\n\n");
                 //this command to check if the hours is null or no.
-                ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(DetailsOfRestaurants.this, imageOfRestaurant);
-                viewPager.setAdapter(viewPagerAdapter);
+                ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(RestaurantsDetailsActivity.this, restaurantImage);
+                imageViewPager.setAdapter(viewPagerAdapter);
             }
 
             @Override

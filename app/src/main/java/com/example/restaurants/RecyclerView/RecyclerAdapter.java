@@ -5,22 +5,25 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.restaurants.R;
 import com.example.restaurants.RestaurantsSearchAttributes;
 import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerViewHeaven> {
 
-    Context context;
-    List<RestaurantsSearchAttributes> restaurants;
+    private Context context;
+    private List<RestaurantsSearchAttributes> restaurantsAttributes;
     private final RecyclerViewClickListener listener;
 
-    public RecyclerAdapter(Context context, List<RestaurantsSearchAttributes> restaurants, RecyclerViewClickListener listener) {
+    public RecyclerAdapter(Context context, List<RestaurantsSearchAttributes> restaurantsAttributes, RecyclerViewClickListener listener) {
         this.context = context;
-        this.restaurants = restaurants;
+        this.restaurantsAttributes = restaurantsAttributes;
         this.listener = listener;
     }
 
@@ -33,15 +36,15 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerViewHeaven> {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewHeaven holder, int position) {
-        Picasso.with(context).load(Uri.parse(restaurants.get(position).getImage())).into(holder.imageOfRestaurant);
-        holder.descriptionOfRestaurant.setText(restaurants.get(position).getName()
-                + "\n" + restaurants.get(position).getRating() + " Stars, Reviews "
-                + restaurants.get(position).getReview());
+        Picasso.with(context).load(Uri.parse(restaurantsAttributes.get(position).getRestaurantsImage())).into(holder.restaurantsImageView);
+        holder.restaurantsDescriptionTextView.setText(restaurantsAttributes.get(position).getPlaceName()
+                + "\n" + restaurantsAttributes.get(position).getRestaurantsRating() + " Stars, Reviews "
+                + restaurantsAttributes.get(position).getRestaurantsReview());
     }
 
     @Override
     public int getItemCount() {
-        return restaurants.size();
+        return restaurantsAttributes.size();
     }
 
 

@@ -9,7 +9,7 @@
     android:orientation="horizontal">
 
     <EditText
-        android:id="@+id/place_edit_text_search"
+        android:id="@+id/place_search_edit_text"
         android:layout_width="350dp"
         android:layout_height="46dp"
         android:layout_marginLeft="10dp"
@@ -18,7 +18,7 @@
         android:inputType="textPersonName" />
 
     <ImageButton
-        android:id="@+id/image_search"
+        android:id="@+id/search_image_button"
         android:layout_width="30dp"
         android:layout_height="35dp"
         android:layout_marginLeft="-5dp"

@@ -9,13 +9,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class APIClient {
 
     private static final String BASE_URL = "https://api.yelp.com";
-    private static final String token = "6zrGPNnMa2Lpae-67baeo9V1AvpLubq1cY7GRCaEUch2ryZjVdxKdP7lMfYbcP-51X1bh8X-saBSgcSWZ5fs5crb6V_2NTzrLdAqDEZySXWqcgF1xt05A7NmnWXcYHYx";
+    public static final String API_KEY = "6zrGPNnMa2Lpae-67baeo9V1AvpLubq1cY7GRCaEUch2ryZjVdxKdP7lMfYbcP-51X1bh8X-saBSgcSWZ5fs5crb6V_2NTzrLdAqDEZySXWqcgF1xt05A7NmnWXcYHYx";
 
     public static Retrofit getClient() {
 
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(chain -> {
             Request newRequest = chain.request().newBuilder()
-                    .addHeader("Authorization", "Bearer " + token)
+                    .addHeader("Authorization", "Bearer " + API_KEY)
                     .build();
 
             return chain.proceed(newRequest);
@@ -29,8 +29,6 @@ public class APIClient {
                 .build();
 
     }
-
-
 
 
 }

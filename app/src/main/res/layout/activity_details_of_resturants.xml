@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DetailsOfRestaurants">
+    tools:context=".RestaurantsDetailsActivity">
 
     <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/view_pager_of_image_of_details_of_restaurant"
+        android:id="@+id/restaurants_images_view_pager"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:padding="10dp"
@@ -20,15 +20,16 @@
         android:layout_height="430dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_pager_of_image_of_details_of_restaurant">
+        app:layout_constraintTop_toBottomOf="@+id/restaurants_images_view_pager">
 
         <LinearLayout
+            android:id="@+id/restaurants_details_linear_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/text_name_of_restaurants"
+                android:id="@+id/restaurants_name_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
@@ -36,19 +37,19 @@
                 android:textSize="20sp"
                 android:textStyle="italic"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/view_pager_of_image_of_details_of_restaurant"
+                app:layout_constraintTop_toBottomOf="@id/restaurants_images_view_pager"
                 tools:ignore="RtlCompat" />
 
             <LinearLayout
-                android:id="@+id/linear_layout_phone_of_restaurants"
+                android:id="@+id/restaurants_phone_linear_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/text_name_of_restaurants">
+                app:layout_constraintTop_toBottomOf="@id/restaurants_name_text_view">
 
                 <TextView
-                    android:id="@+id/text_phone_of_restaurants"
+                    android:id="@+id/restaurants_phone_text_view"
                     android:layout_width="350dp"
                     android:layout_height="wrap_content"
                     android:paddingLeft="10dp"
@@ -57,18 +58,16 @@
                     android:textStyle="italic" />
 
                 <ImageButton
-                    android:id="@+id/call_restaurants"
+                    android:id="@+id/restaurants_call_button"
                     android:layout_width="60dp"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
                     android:paddingTop="15dp"
-                    android:src="@drawable/ic_baseline_call_24"
-
-                    />
+                    android:src="@drawable/ic_baseline_call_24" />
             </LinearLayout>
 
             <TextView
-                android:id="@+id/text_address_of_restaurants"
+                android:id="@+id/restaurants_address_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
@@ -76,7 +75,7 @@
                 android:textSize="20sp"
                 android:textStyle="italic"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/linear_layout_phone_of_restaurants"
+                app:layout_constraintTop_toBottomOf="@id/restaurants_phone_linear_layout"
                 tools:ignore="RtlCompat" />
         </LinearLayout>
     </ScrollView>
